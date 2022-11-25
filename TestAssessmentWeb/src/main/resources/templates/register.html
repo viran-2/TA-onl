@@ -1,0 +1,92 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<script>
+function showPassword() {
+  var pass1 = document.getElementById("password1");
+  var pass2 = document.getElementById("password2");
+  
+  if (pass1.type === "password") {
+    pass1.type = "text";
+    pass2.type = "text";
+  } else {
+    pass1.type = "password";
+    pass2.type = "password";
+    
+  }
+}
+
+function onChange() {
+	  const pw1 = document.querySelector('input[id=password1]');
+	  const pw2 = document.querySelector('input[id=password2]');
+	  if (pw1.value === pw2.value) {
+	    pw2.setCustomValidity('');
+	  } else {
+	    pw2.setCustomValidity('Passwords do not match');
+	  }
+	}
+
+
+</script>
+
+<head>
+    <title>Register</title>
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+          crossorigin="anonymous" />
+</head>
+<body>
+
+<div class="container">
+<center>
+	<h1>VTestAssessment</h1>
+	<hr/>
+    
+    <h3>Add New Account</h3>
+
+
+    <form th:action="@{/saveAccount}" th:object="${account}" method="POST">
+
+		
+        <input maxlength="20" required type="email" th:field="*{Email}" class="form-control col-4 mb-4" placeholder="Enter Email" />
+		
+		<input maxlength="15"required type="text" th:field="*{FirstName}" class="form-control col-4 mb-4" placeholder="Enter First Name" />
+		
+		<input maxlength="15"required type="text" th:field="*{LastName}" class="form-control col-4 mb-4" placeholder="Enter Last Name" />
+		
+		<input maxlength="20" pattern="(?=.*?[A-Z]).{5,}" autofocus required title="Password must be 5 characters minimum with at least 1 uppercase character and 1 number" id="password1" type="password" th:field="*{Password}" class="form-control col-4 mb-4" placeholder="Enter Password" />
+
+		<input maxlength="20" onChange="onChange()" autofocus required id="password2" type="password" class="form-control col-4 mb-4" placeholder="Repeat Password" />
+		
+		<input type="checkbox" onclick="showPassword()"> Show Password
+		<p></p>
+		
+
+	
+		<input checked="checked" 
+        	id="Student"
+        	name="Type" 
+        	type="radio" 
+        	value="Student" />
+        <label for="Student">Student</label><br>
+        	
+
+		<input id="Lecturer"
+        	name="Type" 
+        	type="radio" 
+        	value="Lecturer" />
+        <label>Lecturer</label><br>
+        	
+        
+        <button type="submit" class="btn btn-primary col-2">Save</button>
+
+    </form>
+    <hr/>
+    <h3>Already Have an account?</h3>
+    <a th:href="@{/login}">Login</a>
+    </centre>
+</div>
+
+</body>
+</html>

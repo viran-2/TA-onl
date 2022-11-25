@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+          crossorigin="anonymous" />
+</head>
+<body>
+<div class="container">
+
+    <h3>Home</h3>
+
+    <hr/>
+    <a th:href="@{/register}" class="btn btn-primary">Register for Account</a>
+    <a th:href="@{/createclass}" class="btn btn-primary">Create Class</a>
+    <br/><br/>
+    
+    <h3>List of Classes</h3>
+
+
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>Class Name</th>
+            <th>Class Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="classroom: ${classrooms}">
+            <td th:text="${classroom.Name}" />
+            <td th:text="${classroom.Description}" />
+        </tr>
+        </tbody>
+
+    </table>
+    
+</div>
+</body>
+</html>

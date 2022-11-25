@@ -1,0 +1,61 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<script>
+function showPassword() {
+  var pass1 = document.getElementById("password1");
+  var pass2 = document.getElementById("password2");
+  
+  if (pass1.type === "password") {
+    pass1.type = "text";
+    pass2.type = "text";
+  } else {
+    pass1.type = "password";
+    pass2.type = "password";
+    
+  }
+}
+
+
+
+</script>
+
+<head>
+    <title>Log in</title>
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+          crossorigin="anonymous" />
+</head>
+<body>
+
+<div class="container">
+<center>
+	<h1>VTestAssessment</h1>
+	<hr/>
+    
+    <h3>Log In</h3>
+
+
+    <form th:action="@{/saveAccount}" th:object="${account}" method="POST">
+
+		
+        <input maxlength="20" required type="email" th:field="*{Email}" class="form-control col-4 mb-4" placeholder="Enter Email" />
+
+		<input maxlength="20" pattern="(?=.*?[A-Z]).{6,}" autofocus required title="Password must be 5 characters minimum with at least 1 uppercase character and 1 number" id="password1" type="password" th:field="*{Password1}" class="form-control col-4 mb-4" placeholder="Enter Password" />
+
+		
+		<input type="checkbox" onclick="showPassword()"> Show Password
+		<br>
+		<br>
+        <button type="submit" class="btn btn-primary col-2">Save</button>
+
+    </form>
+    <hr/>
+    <h3>Don't have an account?</h3>
+    <a th:href="@{/login}">Register</a>
+    </centre>
+</div>
+
+</body>
+</html>
